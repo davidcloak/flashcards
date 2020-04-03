@@ -188,7 +188,7 @@ public class FlashCardGUI extends javax.swing.JFrame {
             }
             updateCard(position);
         }
-        this.ShuffleButton.setVisible(false);
+        //this.ShuffleButton.setVisible(false); //used to test for a button later
     }//GEN-LAST:event_NextButtonActionPerformed
 
     private void PervButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PervButtonActionPerformed
