@@ -60,6 +60,11 @@ public class FlashCardGUI extends javax.swing.JFrame {
 
         CardPanel.setBackground(new java.awt.Color(255, 255, 255));
         CardPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CardPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CardPanelMouseClicked(evt);
+            }
+        });
 
         CardLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CardLabel.setText("jLabel1");
@@ -74,17 +79,17 @@ public class FlashCardGUI extends javax.swing.JFrame {
         CardPanel.setLayout(CardPanelLayout);
         CardPanelLayout.setHorizontalGroup(
             CardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CardPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(CardLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(CardPanelLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(CardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         CardPanelLayout.setVerticalGroup(
             CardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CardPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(CardLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addComponent(CardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
         );
 
         NextButton.setText("Next");
@@ -207,6 +212,12 @@ public class FlashCardGUI extends javax.swing.JFrame {
         flippy*=-1;  //multiply by -1 to switch sign
         updateCard(position);
     }//GEN-LAST:event_CardLabelMouseClicked
+
+    private void CardPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CardPanelMouseClicked
+        // TODO add your handling code here:
+        flippy*=-1;  //multiply by -1 to switch sign
+        updateCard(position);
+    }//GEN-LAST:event_CardPanelMouseClicked
 
     /**
      * @param args the command line arguments
