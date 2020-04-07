@@ -20,7 +20,13 @@ public class FlashCardGUI extends javax.swing.JFrame {
     public FlashCardGUI() {
         initComponents();
         makeDummyCards();
+        this.CardLabel.setLineWrap(true);
+        this.CardLabel.setWrapStyleWord(true);
         updateCard(this.card);
+    }
+    
+    private void centering(){
+        
     }
     
     public void makeDummyCards(){
@@ -74,7 +80,8 @@ public class FlashCardGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         CardPanel = new javax.swing.JPanel();
-        CardLabel = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        CardLabel = new javax.swing.JTextArea();
         NextButton = new javax.swing.JButton();
         PervButton = new javax.swing.JButton();
         FlipButton = new javax.swing.JButton();
@@ -83,8 +90,11 @@ public class FlashCardGUI extends javax.swing.JFrame {
         FlashCardComboBox = new javax.swing.JComboBox<>();
         ShuffleButton = new javax.swing.JButton();
         DoneButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         CardPanel.setBackground(new java.awt.Color(255, 255, 255));
         CardPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -95,16 +105,19 @@ public class FlashCardGUI extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane2.setBorder(null);
+
         CardLabel.setEditable(false);
-        CardLabel.setBackground(new java.awt.Color(255, 255, 255));
-        CardLabel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        CardLabel.setText("jTextField1");
-        CardLabel.setBorder(null);
+        CardLabel.setColumns(20);
+        CardLabel.setRows(5);
+        CardLabel.setMargin(new java.awt.Insets(50, 75, 50, 75));
+        CardLabel.setPreferredSize(new java.awt.Dimension(482, 232));
         CardLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CardLabelMouseClicked(evt);
             }
         });
+        jScrollPane2.setViewportView(CardLabel);
 
         javax.swing.GroupLayout CardPanelLayout = new javax.swing.GroupLayout(CardPanel);
         CardPanel.setLayout(CardPanelLayout);
@@ -112,14 +125,14 @@ public class FlashCardGUI extends javax.swing.JFrame {
             CardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CardPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CardLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
                 .addContainerGap())
         );
         CardPanelLayout.setVerticalGroup(
             CardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CardPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CardLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -161,6 +174,11 @@ public class FlashCardGUI extends javax.swing.JFrame {
         FlashCardComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fake Cards" }));
 
         ShuffleButton.setText("Shuffle");
+        ShuffleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ShuffleButtonActionPerformed(evt);
+            }
+        });
 
         DoneButton.setText("Done");
         DoneButton.setEnabled(false);
@@ -170,53 +188,61 @@ public class FlashCardGUI extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setBorder(null);
+
+        jTextPane1.setBorder(null);
+        jScrollPane1.setViewportView(jTextPane1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(PervButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(CardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(NextButton, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(FlashCardComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(CreateButton)
+                                .addComponent(PervButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(CardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(NextButton, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(FlashCardComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(CreateButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(LoadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LoadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DoneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ShuffleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(DoneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ShuffleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(272, 272, 272)
+                        .addComponent(FlipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(272, 272, 272)
-                .addComponent(FlipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(CardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(PervButton)
                             .addComponent(NextButton))
-                        .addGap(198, 198, 198))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(CardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(FlipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)))
-                .addGap(10, 10, 10)
+                        .addGap(142, 142, 142)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FlipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -289,14 +315,6 @@ public class FlashCardGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CardPanelMouseClicked
 
-    private void CardLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CardLabelMouseClicked
-        // TODO add your handling code here:
-        if (!creatingCards) {
-            flippy *= -1;  //multiply by -1 to switch sign
-            updateCard(this.card);
-        }
-    }//GEN-LAST:event_CardLabelMouseClicked
-
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
         // TODO add your handling code here:
         creatingCards = true;
@@ -336,6 +354,22 @@ public class FlashCardGUI extends javax.swing.JFrame {
         flippy = -1;
         updateCard(this.card);
     }//GEN-LAST:event_LoadButtonActionPerformed
+
+    private void ShuffleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShuffleButtonActionPerformed
+        // TODO add your handling code here:
+        position = 0;
+        flippy = -1;
+        this.card.shuffle();
+        updateCard(this.card);
+    }//GEN-LAST:event_ShuffleButtonActionPerformed
+
+    private void CardLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CardLabelMouseClicked
+        // TODO add your handling code here:
+        if (!creatingCards) {
+            flippy *= -1;  //multiply by -1 to switch sign
+            updateCard(this.card);
+        }
+    }//GEN-LAST:event_CardLabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -380,7 +414,7 @@ public class FlashCardGUI extends javax.swing.JFrame {
     private boolean creatingCards = false;
     private int flippy = -1, position = 0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CardLabel;
+    private javax.swing.JTextArea CardLabel;
     private javax.swing.JPanel CardPanel;
     private javax.swing.JButton CreateButton;
     private javax.swing.JButton DoneButton;
@@ -390,5 +424,8 @@ public class FlashCardGUI extends javax.swing.JFrame {
     private javax.swing.JButton NextButton;
     private javax.swing.JButton PervButton;
     private javax.swing.JButton ShuffleButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
