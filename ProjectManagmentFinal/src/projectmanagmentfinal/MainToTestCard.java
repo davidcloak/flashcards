@@ -25,7 +25,7 @@ public class MainToTestCard {
         
         for(int i =0; i<card.size(); i++){
             System.out.println(card.getDef(i));
-            System.out.println(card.getAnwser(i));
+            System.out.println(card.getAnswer(i));
         }
         System.out.println("");
         
@@ -33,7 +33,7 @@ public class MainToTestCard {
         
         for(int i =0; i<card.size(); i++){
             System.out.println(card.getDef(i));
-            System.out.println(card.getAnwser(i));
+            System.out.println(card.getAnswer(i));
         }
         
     }

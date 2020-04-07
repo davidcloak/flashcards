@@ -19,16 +19,24 @@ public class Card {
     public Card() {
     }
     
-    public void add(String def, String anwser){
-        String[] holder = {def, anwser};
+    public void add(String def, String answer){
+        String[] holder = {def, answer};
         theCard.add(holder);
+    }
+    
+    public void setDef(int i, String def){
+        theCard.get(i)[0] = def;
     }
     
     public String getDef(int i){
         return theCard.get(i)[0];
     }
     
-    public String getAnwser(int i){
+    public void setAnswer(int i, String answer){
+        theCard.get(i)[1] = answer;
+    }
+    
+    public String getAnswer(int i){
         return theCard.get(i)[1];
     }
     
@@ -38,6 +46,14 @@ public class Card {
     
     public void shuffle(){
         Collections.shuffle(theCard);
+    }
+    
+    public boolean isEmptyAtPostion(int i){
+        if(theCard.size() < i+1){
+            return false;
+        }else{
+            return true;
+        }
     }
     
 }
