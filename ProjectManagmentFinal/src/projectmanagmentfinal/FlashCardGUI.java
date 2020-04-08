@@ -90,8 +90,6 @@ public class FlashCardGUI extends javax.swing.JFrame {
         FlashCardComboBox = new javax.swing.JComboBox<>();
         ShuffleButton = new javax.swing.JButton();
         DoneButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -110,7 +108,6 @@ public class FlashCardGUI extends javax.swing.JFrame {
         CardLabel.setEditable(false);
         CardLabel.setColumns(20);
         CardLabel.setRows(5);
-        CardLabel.setMargin(new java.awt.Insets(50, 75, 50, 75));
         CardLabel.setPreferredSize(new java.awt.Dimension(482, 232));
         CardLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -188,11 +185,6 @@ public class FlashCardGUI extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setBorder(null);
-
-        jTextPane1.setBorder(null);
-        jScrollPane1.setViewportView(jTextPane1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -222,8 +214,7 @@ public class FlashCardGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(272, 272, 272)
                         .addComponent(FlipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -239,10 +230,8 @@ public class FlashCardGUI extends javax.swing.JFrame {
                             .addComponent(PervButton)
                             .addComponent(NextButton))
                         .addGap(142, 142, 142)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(FlipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addComponent(FlipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -424,8 +413,6 @@ public class FlashCardGUI extends javax.swing.JFrame {
     private javax.swing.JButton NextButton;
     private javax.swing.JButton PervButton;
     private javax.swing.JButton ShuffleButton;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
