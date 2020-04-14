@@ -5,6 +5,7 @@
  */
 package projectmanagmentfinal;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 /**
@@ -35,6 +36,12 @@ public class MainToTestCard {
             System.out.println(card.getDef(i));
             System.out.println(card.getAnswer(i));
         }
+        
+        //test for splitting when ya
+        String yeye = "hello@#How@#are, you";
+        String yeyeArray[];
+        yeyeArray = yeye.split("@#");
+        System.out.println(yeyeArray[0]);
         
     }
     
