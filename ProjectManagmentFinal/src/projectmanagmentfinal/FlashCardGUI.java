@@ -431,7 +431,6 @@ public class FlashCardGUI extends javax.swing.JFrame {
         String name = JOptionPane.showInputDialog("Enter Cards Name\n leave blank to cancel","");
         position = 0;
         flippy = -1;
-        LoadCardsNameToComboBox();
         updateCard(this.card);
         this.CardLabel.setEditable(false);
         this.DoneButton.setEnabled(false);
@@ -440,6 +439,8 @@ public class FlashCardGUI extends javax.swing.JFrame {
         }else{
             writeToFile(creatorCard, name);
         }
+        
+        LoadCardsNameToComboBox();
         
         this.wrongButton.setEnabled(true);
         this.revisitButton.setEnabled(true);
